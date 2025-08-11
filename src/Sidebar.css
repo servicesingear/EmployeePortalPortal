@@ -1,0 +1,85 @@
+/* Sidebar full layout */
+.sidebar {
+  width: 280px;
+  background-color: #012441e3;
+  color: #ecf0f1;
+  padding: 25px 20px;
+  overflow: hidden;
+}
+
+/* Common box styles */
+.employee-menu-box,
+.manager-menu-box {
+  background-color: #e3e6e9;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(31, 30, 30, 0.959);
+}
+
+/* Manager box highlight */
+.manager-menu-box {
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  border-top: 3px solid #eaeef0;
+}
+
+/* Manager title */
+.manager-title {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+/* Menu item styles */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  background-color: transparent;
+  color: #ffffff; /* Force white text */
+}
+
+.menu-item:hover {
+  background-color: #000000;
+}
+
+/* Active item override (still white text) */
+.menu-item.active {
+  background-color: #080808;
+  color: #ffffff; /* Keep text white */
+  font-weight: 600;
+}
+
+/* Icon style */
+.menu-item .icon {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #ffffff; /* Ensure icon is also white */
+}
+
+/* Label style (force white text) */
+.menu-item .label {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .employee-menu-box,
+  .manager-menu-box {
+    margin-bottom: 15px;
+  }
+}

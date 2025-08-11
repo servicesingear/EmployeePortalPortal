@@ -1,0 +1,558 @@
+/* Attendance.css - Interactive Version */
+:root {
+  --primary: #3498db;
+  --primary-hover: #2980b9;
+  --secondary: #f8f9fa;
+  --secondary-hover: #e9ecef;
+  --success: #2e7d32;
+  --danger: #c62828;
+  --warning: #e65100;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --border: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.attendance-page {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Loading Animation */
+.attendance-page.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.loading-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loading-icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 8px solid rgba(52, 152, 219, 0.2);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+.loading-icon:nth-child(2) {
+  border: 8px solid transparent;
+  border-top-color: rgba(52, 152, 219, 0.6);
+  animation-delay: 0.2s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.header-icon {
+  font-size: 2rem;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Card Grid with Animation */
+.attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.attendance-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 1.8rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.attendance-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.attendance-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-card:hover::before {
+  transform: scaleX(1);
+}
+
+.attendance-card.primary {
+  border-top: none;
+}
+
+.attendance-card.primary::before {
+  background: var(--primary);
+  transform: scaleX(1);
+}
+
+/* Card Content with Animated Elements */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  gap: 12px;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+.metric:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+  transform: translateX(5px);
+}
+
+.value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  position: relative;
+}
+
+.value::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.metric:hover .value::after {
+  width: 100%;
+}
+
+/* Animated Progress Bar */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.progress-bar {
+  width: 120px;
+  height: 8px;
+  background-color: #ecf0f1;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), #4fc3f7);
+  width: 0;
+  transition: width 1s ease-out;
+}
+
+.progress-percent {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.3s ease 0.3s;
+}
+
+.metric:hover .progress-percent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Interactive Table */
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 10px 10px 0;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.log-table th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.log-table th, .log-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-table tr:last-child td {
+  border-bottom: none;
+}
+
+.log-table tr {
+  transition: var(--transition);
+}
+
+.log-table tr:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Enhanced Status Badges */
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: default;
+}
+
+.status:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.status-icon {
+  margin-right: 6px;
+  font-size: 0.8rem;
+  transition: var(--transition);
+}
+
+.status.on-time {
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--success);
+}
+
+.status.on-time:hover {
+  background-color: rgba(46, 125, 50, 0.2);
+}
+
+.status.late {
+  background-color: rgba(198, 40, 40, 0.1);
+  color: var(--danger);
+}
+
+.status.late:hover {
+  background-color: rgba(198, 40, 40, 0.2);
+}
+
+.status.absent {
+  background-color: rgba(230, 81, 0, 0.1);
+  color: var(--warning);
+}
+
+.status.absent:hover {
+  background-color: rgba(230, 81, 0, 0.2);
+}
+
+/* Interactive Buttons */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.8rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.action-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.action-btn:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.action-btn svg {
+  transition: var(--transition);
+}
+
+.action-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.action-btn.secondary {
+  background-color: var(--secondary);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.action-btn.secondary:hover {
+  background-color: var(--secondary-hover);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Date Picker with Animation */
+.date-selector {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.date-selector label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.date-selector input {
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+  box-shadow: var(--shadow);
+}
+
+.date-selector input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  transform: translateY(-1px);
+}
+
+.date-selector input:hover {
+  border-color: var(--primary);
+}
+
+/* Modal with Smooth Transitions */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .attendance-page {
+    padding: 1.5rem;
+  }
+  
+  .attendance-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .date-selector input {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .action-btn {
+    width: 100%;
+  }
+}
