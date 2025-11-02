@@ -22,6 +22,12 @@ import Holidays from './Holidays';
 const AppContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
+// Redirect to login if not logged in and not already on /login
+useEffect(() => {
+  if (!loggedInUser && location.pathname !== '/login' && location.pathname !== '/') {
+    navigate('/login');
+  }
+}, [loggedInUser, location, navigate]);
 
   const [activePage, setActivePage] = useState('Dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
