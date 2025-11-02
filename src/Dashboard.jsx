@@ -5,7 +5,7 @@ import {
   FaChalkboardTeacher, FaPlaneDeparture, FaUser,
   FaSyncAlt, FaCheckCircle, FaUsers, FaChartLine,
   FaProjectDiagram, FaTachometerAlt, FaEllipsisH,
-  FaChevronRight
+  FaChevronRight,FaUmbrellaBeach
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Dashboard.css';
@@ -112,36 +112,47 @@ const Dashboard = ({ role = 'employee' }) => {
         description: 'View your attendance records',
         quickActions: ['View History', 'Report Issue']
       },
+      // {
+      //   title: 'Payslip',
+      //   icon: FaFileInvoiceDollar,
+      //   value: 'View Payslip',
+      //   path: '/payslip',
+      //   highlight: true,
+      //   iconClass: 'payslip',
+      //   description: 'Access salary details',
+      //   quickActions: ['Download', 'View History']
+      // },
+      // {
+      //   title: 'Training',
+      //   icon: FaChalkboardTeacher,
+      //   value: 'Email',
+      //   path: '/training',
+      //   highlight: true,
+      //   iconClass: 'training',
+      //   description: 'Explore training programs',
+      //   quickActions: ['Browse Courses', 'My Progress']
+      // },
+      // {
+      //   title: 'Travel',
+      //   icon: FaPlaneDeparture,
+      //   value: 'Apply Now',
+      //   path: '/travel',
+      //   highlight: true,
+      //   iconClass: 'travel',
+      //   description: 'Submit travel requests',
+      //   quickActions: ['New Request', 'Itinerary']
+      // },
       {
-        title: 'Payslip',
-        icon: FaFileInvoiceDollar,
-        value: 'View Payslip',
-        path: '/payslip',
-        highlight: true,
-        iconClass: 'payslip',
-        description: 'Access salary details',
-        quickActions: ['Download', 'View History']
-      },
-      {
-        title: 'Training',
-        icon: FaChalkboardTeacher,
-        value: 'Email',
-        path: '/training',
-        highlight: true,
-        iconClass: 'training',
-        description: 'Explore training programs',
-        quickActions: ['Browse Courses', 'My Progress']
-      },
-      {
-        title: 'Travel',
-        icon: FaPlaneDeparture,
-        value: 'Apply Now',
-        path: '/travel',
-        highlight: true,
-        iconClass: 'travel',
-        description: 'Submit travel requests',
-        quickActions: ['New Request', 'Itinerary']
-      },
+  title: 'Holidays',
+  icon: FaUmbrellaBeach, // 🏖️ choose an icon that fits the theme
+  value: 'View List',
+  path: '/holidays',
+  highlight: true,
+  iconClass: 'holiday',
+  description: 'View upcoming company holidays',
+  quickActions: ['View Calendar', 'Download List']
+},
+
       {
         title: 'Profile',
         icon: FaUser,

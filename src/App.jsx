@@ -16,6 +16,7 @@ import Travel from './Travel';
 import Profile from './Profile';
 import UpdateRequest from './UpdateRequest';
 import RemoteRequest from './RemoteRequest';
+import Holidays from './Holidays';
 
 // Manager Pages
 import Approvals from './Approvals';
@@ -96,6 +97,7 @@ function App() {
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/leave" element={<Leave />} />
                   <Route path="/attendance" element={<Attendance />} />
+                  <Route path ="/holidays" element={<Holidays />} />
                   <Route path="/payslip" element={<Payslip />} />
                   <Route path="/training" element={<Training />} />
                   <Route path="/travel" element={<Travel />} />

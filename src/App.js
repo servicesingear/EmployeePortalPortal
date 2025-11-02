@@ -17,6 +17,7 @@ import TeamDashboard from './TeamDashboard';
 import Performance from './Performance';
 import ProjectAssign from './ProjectAssign';
 import LoginForm from './LoginForm';
+import Holidays from './Holidays';
 
 const AppContent = () => {
   const location = useLocation();
@@ -29,7 +30,7 @@ const AppContent = () => {
 
   useEffect(() => {
     const pathToPage = {
-      '/': 'Dashboard',
+      '/': 'Login',
       '/dashboard': 'Dashboard',
       '/leave': 'Leave',
       '/attendance': 'Attendance',
@@ -42,7 +43,8 @@ const AppContent = () => {
       '/team-dashboard': 'TeamDashboard',
       '/performance': 'Performance',
       '/project-assign': 'ProjectAssign',
-      '/login': 'Login'
+      '/login': 'Login',
+      '/holidays': 'Holidays'
     };
     const currentPage = pathToPage[location.pathname] || 'Dashboard';
     setActivePage(currentPage);
@@ -76,9 +78,10 @@ const AppContent = () => {
     Approvals: <Approvals />,
     TeamDashboard: <TeamDashboard />,
     Performance: <Performance />,
-    ProjectAssign: <ProjectAssign />
+    ProjectAssign: <ProjectAssign />,
+    Holidays: <Holidays />
   };
-const hideNavbar = location.pathname === "/login";
+const hideNavbar = location.pathname === "/login" || location.pathname ==="/";
   return (
     <div className="app">
        {!hideNavbar && (
@@ -109,7 +112,7 @@ const hideNavbar = location.pathname === "/login";
                 />
               )
             ))}
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<LoginForm onLogin={handleLogin}/>} />
           </Routes>
         </div>
       </div>

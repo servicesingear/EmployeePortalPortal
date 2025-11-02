@@ -13,12 +13,13 @@ const Sidebar = ({ activePage, setActivePage, isVisible, role }) => {
   const employeeItems = [
     { name: 'Dashboard', label: 'Dashboard', icon: <FaTachometerAlt /> },
     { name: 'Leave', label: 'Leave', icon: <FaCalendarAlt /> },
-    { name: 'Attendance', label: 'Attendance', icon: <FaClock /> },
-    { name: 'Payslip', label: 'Payslip', icon: <FaMoneyCheckAlt /> },
-    { name: 'Training', label: 'Training', icon: <FaChalkboardTeacher /> },
-    { name: 'Travel', label: 'Travel', icon: <FaPlane /> },
+    // { name: 'Attendance', label: 'Attendance', icon: <FaClock /> },
+    // { name: 'Payslip', label: 'Payslip', icon: <FaMoneyCheckAlt /> },
+    // { name: 'Training', label: 'Training', icon: <FaChalkboardTeacher /> },
+    // { name: 'Travel', label: 'Travel', icon: <FaPlane /> },
+    { name: 'Holidays', label: 'Holidays', icon: <FaCalendarAlt /> },
     { name: 'Profile', label: 'Profile', icon: <FaUser /> },
-    { name: 'UpdateRequest', label: 'Update Request', icon: <FaEdit /> }
+    // { name: 'UpdateRequest', label: 'Update Request', icon: <FaEdit /> }
   ];
 
   const managerItems = [
