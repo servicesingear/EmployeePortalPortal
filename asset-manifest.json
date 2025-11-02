@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/EmployeePortalPortal/static/css/main.fe26027d.css",
+    "main.js": "/EmployeePortalPortal/static/js/main.9901bfbe.js",
+    "index.html": "/EmployeePortalPortal/index.html",
+    "main.fe26027d.css.map": "/EmployeePortalPortal/static/css/main.fe26027d.css.map",
+    "main.9901bfbe.js.map": "/EmployeePortalPortal/static/js/main.9901bfbe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe26027d.css",
+    "static/js/main.9901bfbe.js"
+  ]
+}
