@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div className="app">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         {loggedInUser && (
           <CustomNavbar
             toggleSidebar={handleToggleSidebar}
