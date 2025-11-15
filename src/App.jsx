@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import * as faceapi from 'face-api.js';
 
@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div className="app">
-      <Router basename={process.env.PUBLIC_URL}>
+      <HashRouter>
         {loggedInUser && (
           <CustomNavbar
             toggleSidebar={handleToggleSidebar}
@@ -133,7 +133,7 @@ function App() {
             </Routes>
           </div>
         </div>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
