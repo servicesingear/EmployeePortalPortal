@@ -22,17 +22,19 @@ import Holidays from './Holidays';
 const AppContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
-// Redirect to login if not logged in and not already on /login
-useEffect(() => {
-  if (!loggedInUser && location.pathname !== '/login' && location.pathname !== '/') {
-    navigate('/login');
-  }
-}, [loggedInUser, location, navigate]);
 
+  // ✅ STATES MUST COME FIRST
   const [activePage, setActivePage] = useState('Dashboard');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem("loggedInUser") || null);
   const [role, setRole] = useState(localStorage.getItem("role") || null);
+
+  // ✅ NOW EFFECT CAN SAFELY USE loggedInUser
+  useEffect(() => {
+    if (!loggedInUser && location.pathname !== '/login' && location.pathname !== '/') {
+      navigate('/login');
+    }
+  }, [loggedInUser, location, navigate]);
 
   useEffect(() => {
     const pathToPage = {
@@ -52,6 +54,7 @@ useEffect(() => {
       '/login': 'Login',
       '/holidays': 'Holidays'
     };
+
     const currentPage = pathToPage[location.pathname] || 'Dashboard';
     setActivePage(currentPage);
   }, [location]);
@@ -87,23 +90,25 @@ useEffect(() => {
     ProjectAssign: <ProjectAssign />,
     Holidays: <Holidays />
   };
-const hideNavbar = location.pathname === "/login" || location.pathname ==="/";
+
+  const hideNavbar = location.pathname === "/login" || location.pathname === "/";
+
   return (
     <div className="app">
-       {!hideNavbar && (
-         <CustomNavbar
-           toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-           loggedInUser={loggedInUser}
-           onLogout={handleLogout}
-         />
-       )}
+      {!hideNavbar && (
+        <CustomNavbar
+          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          loggedInUser={loggedInUser}
+          onLogout={handleLogout}
+        />
+      )}
       <div className="main-content">
         {activePage !== 'Login' && (
-          <Sidebar 
-            activePage={activePage} 
-            setActivePage={setActivePage} 
-            isVisible={isSidebarOpen} 
-            role={role} 
+          <Sidebar
+            activePage={activePage}
+            setActivePage={setActivePage}
+            isVisible={isSidebarOpen}
+            role={role}
           />
         )}
         <div className="content-area">
@@ -111,14 +116,14 @@ const hideNavbar = location.pathname === "/login" || location.pathname ==="/";
             <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
             {Object.keys(pageComponents).map((page) => (
               page !== "Login" && (
-                <Route 
-                  key={page} 
-                  path={`/${page.toLowerCase()}`} 
-                  element={pageComponents[page]} 
+                <Route
+                  key={page}
+                  path={`/${page.toLowerCase()}`}
+                  element={pageComponents[page]}
                 />
               )
             ))}
-            <Route path="/" element={<LoginForm onLogin={handleLogin}/>} />
+            <Route path="/" element={<LoginForm onLogin={handleLogin} />} />
           </Routes>
         </div>
       </div>
